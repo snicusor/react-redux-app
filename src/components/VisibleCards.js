@@ -1,9 +1,20 @@
 import React from 'react';
+import Card from './Card';
+import { connect } from 'react-redux';
+import fuzzysearch from 'fuzzysearch';
 
-const Cards = () => {
-  return(
-    <div>Deck will display here</div>
-  )
+const matches = (filter, card) =>
+fuzzysearch(filter, card.front) ||
+fuzzysearch(filter, card.back);
+
+const mapStateToProps = ({ cards, cardFilter }, { params: { deckId } }) => ({
+  cards: cards.filter(c => c.deckId === deckId && matches(cardFilter, c))
+});
+
+const Cards = ({ cards, props }) => {
+  return (<div className='main'>
+    {cards.map(card => <Card card={card} key={card.id} />)}
+    {props.children}
+  </div>);
 };
-
-export default Cards;
+export default connect(mapStateToProps)(Cards);
