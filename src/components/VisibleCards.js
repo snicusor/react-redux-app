@@ -11,10 +11,10 @@ const mapStateToProps = ({ cards, cardFilter }, { params: { deckId } }) => ({
   cards: cards.filter(c => c.deckId === deckId && matches(cardFilter, c))
 });
 
-const Cards = ({ cards, props }) => {
+const Cards = ({ cards, children }) => {
   return (<div className='main'>
     {cards.map(card => <Card card={card} key={card.id} />)}
-    {props.children}
+    {children}
   </div>);
 };
 export default connect(mapStateToProps)(Cards);

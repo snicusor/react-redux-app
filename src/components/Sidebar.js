@@ -4,21 +4,13 @@ import { connect } from 'react-redux';
 import { addDeck, showAddDeck, hideAddDeck } from '../actions';
 import { Link } from 'react-router';
 
-/*
-const mapStateToProps = (state) => {
-  return {
-    decks: state.decks,
-    addingDeck: state.addingDeck
-  };
-};
-*/
 const mapStateToProps = ({ decks, addingDeck }) => ({
-    decks,
-    addingDeck
-  });
+  decks,
+  addingDeck
+});
 
 const mapDispatchToProps = dispatch => ({
-  addDeck: name => dispatch(addDeck(name)),
+  addDeck:   name => dispatch(addDeck(name)),
   showAddDeck: () => dispatch(showAddDeck()),
   hideAddDeck: () => dispatch(hideAddDeck())
 });
@@ -31,8 +23,8 @@ const Sidebar = React.createClass({
   render() {
     let props = this.props;
 
-    return(<div className="sidebar">
-      <h2>All Decks</h2>
+    return (<div className='sidebar'>
+      <h2> All Decks </h2>
       <ul>
         {props.decks.map((deck, i) =>
           <li key={i}>
@@ -40,7 +32,7 @@ const Sidebar = React.createClass({
           </li>
         )}
       </ul>
-      {props.addingDeck && <input ref="add" onKeyPress={this.createDeck}/>}
+      { props.addingDeck && <input ref='add' onKeyPress={this.createDeck} /> }
     </div>);
   },
   createDeck(evt) {
