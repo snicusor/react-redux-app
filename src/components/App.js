@@ -7,14 +7,14 @@ const mapStateToProps = (props, {params: {deckId} }) => ({
   deckId
 });
 
-const App = (props) => {
+const App = (deckId, props) => {
   return (
     <div className="app">
+      <Toolbar deckId={deckId} />
       <Sidebar />
-      <Toolbar />
       {props.children}
     </div>
   );
 };
 
-export default App;
+export default connect(mapStateToProps)(App);
