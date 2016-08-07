@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import Toolbar from './Toolbar';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (props, {params: {deckId} }) => ({
@@ -10,7 +11,7 @@ const App = (props) => {
   return (
     <div className="app">
       <Sidebar />
-      <h1>Deck {props.deckId} </h1>
+      <Toolbar />
       {props.children}
     </div>
   );
