@@ -8,5 +8,5 @@ express()
     .use(bodyParser.json())
   .get('/api/data', function(req, res) { return res.json(data); })
   .post('/api/data', function(req, res) { return res.json(data = req.body);})
-  .get('*', function(req, res) { return res.sendfile(__dirname + '/public/index.html');})
+  .get('*', function(req, res) { return res.sendFile(__dirname + '/public/index.html');})
   .listen(3333);
