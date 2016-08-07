@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { addDeck, showAddDeck, hideAddDeck } from '../actions';
+import { Link } from 'react-router';
 
 /*
 const mapStateToProps = (state) => {
@@ -22,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   hideAddDeck: () => dispatch(hideAddDeck())
 });
 
-const Siderbar = React.createClass({
+const Sidebar = React.createClass({
   componentDidUpdate() {
     var el = ReactDOM.findDOMNode(this.refs.add);
     if (el) el.focus();
@@ -36,7 +37,9 @@ const Siderbar = React.createClass({
       <button onClick={ e => this.props.showAddDeck() }> New deck </button>
       <ul>
         {props.decks.map((deck, i) =>
-          <li key={i}> {deck.name} </li>
+          <li key={i}>
+            <Link to={`/deck/${deck.id}`}> {deck.name} </Link>
+          </li>
         )}
       </ul>
       {props.addingDeck && <input ref="add" onKeyPress={this.createDeck}/>}
@@ -50,4 +53,4 @@ const Siderbar = React.createClass({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Siderbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
